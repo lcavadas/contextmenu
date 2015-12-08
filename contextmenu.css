@@ -21,12 +21,18 @@
     white-space: nowrap;
 }
 
-/*.cm-wrapper .cm-menu li.submenu::after {*/
-    /*content: '\25B6';*/
-    /*font-size: .75em;*/
-    /*float: right;*/
-    /*margin: .20em 0 0 .5em;*/
-/*}*/
+.cm-wrapper .cm-menu li.submenu div.content {
+    display: inline-block;
+    min-width: 100%;
+    padding-right: 1em;
+}
+
+.cm-wrapper .cm-menu li.submenu div.content::after {
+    content: '\25B6';
+    font-size: .75em;
+    float: right;
+    margin-top: .20em;
+}
 
 .cm-wrapper .cm-menu li.active,
 .cm-wrapper .cm-menu li:hover {

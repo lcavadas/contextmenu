@@ -26,7 +26,7 @@ jQuery.fn.contextmenu = function (options) {
           value: 'op 1'
         },
         {
-          display: '<span>optioahsbdlajhsvdjhsvdln 2</span>',
+          display: '<span>option 2</span>',
           value: 'op 2',
           suboptions: [
             {
@@ -43,7 +43,17 @@ jQuery.fn.contextmenu = function (options) {
                 },
                 {
                   display: '<span>option 2.2.2</span>',
-                  value: 'op 2.2.2'
+                  value: 'op 2.2.2',
+                  suboptions: [
+                    {
+                      display: '<span>option 2.2.2.1</span>',
+                      value: 'op 2.2.2.1'
+                    },
+                    {
+                      display: '<span>option 2.2.2.2</span>',
+                      value: 'op 2.2.2.2'
+                    }
+                  ]
                 }
               ]
             }
@@ -135,7 +145,7 @@ jQuery.fn.contextmenu = function (options) {
   var _generateOptions = function (options, $menuContainer, depth) {
     var $menu = $menuContainer.find('ol');
     options.forEach(function (op) {
-      var $option = jQuery('<li value="' + op.value + '">' + op.display + '</li>');
+      var $option = jQuery('<li value="' + op.value + '"><div class="content">' + op.display + '</div></li>');
       $menu.append($option);
       var $subMenuContainer = $('<div class="cm-wrapper cm-wrapper-' + depth + '" style="visibility: hidden;"><ol class="cm-menu"></ol></div>');
       $menuContainer.append($subMenuContainer);
