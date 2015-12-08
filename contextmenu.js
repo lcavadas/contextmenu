@@ -148,12 +148,14 @@ jQuery.fn.contextmenu = function (options) {
       $menuContainer.append($subMenuContainer);
 
       $option.click(function (e) {
-        settings.cb(op.value);
+        if (op.value) {
+          settings.cb(op.value);
+        }
+    
         if (!op.suboptions) {
           _hide();
-        } else {
-          e.stopPropagation();
         }
+        e.stopPropagation();
       });
 
       $option.hover(function () {
