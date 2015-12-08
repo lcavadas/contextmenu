@@ -105,7 +105,7 @@ jQuery.fn.contextmenu = function (options) {
     _$menuContainer = jQuery('<div class="cm-wrapper" style="visibility: hidden;margin-left:' + (e.pageX - parentOffset.left + settings.offsetX) + 'px;margin-top:' + (e.pageY - parentOffset.top + settings.offsetY) + 'px"><ol class="cm-menu"></ol></div>');
     _$menuContainer.on("remove", function () {
       _invertedX = undefined;
-      settings.hide.apply(this, arguments)
+      settings.hide.apply(this, arguments);
     });
     _$this.before(_$menuContainer);
 
@@ -127,7 +127,6 @@ jQuery.fn.contextmenu = function (options) {
       $menuContainer.css('margin-top', (vpos - $menuContainer.outerHeight() + (optionHeight || 0)) + 'px');
     }
 
-    console.log(depth, _invertedX);
     if (horizontalEdge > horizontalMax || depth > _invertedX) {
       var hpos = $menuContainer.css('margin-left');
       hpos = parseInt(hpos.substring(0, hpos.length - 2));
@@ -141,17 +140,27 @@ jQuery.fn.contextmenu = function (options) {
 
   var _generateOptions = function (options, $menuContainer, depth) {
     var $menu = $menuContainer.find('ol');
+    $menu.click(function (e) {
+      e.stopPropagation();
+    });
     options.forEach(function (op) {
-      var $option = jQuery('<li value="' + op.value + '"><div class="content">' + op.display + '</div></li>');
+      var $option = jQuery('<li value="' + op.value + '"><span>' + (typeof op.display === 'object' ? op.display.text : op.display) + '</span></li>');
+      if (op.display.icon) {
+        $option.prepend('<i class="' + op.display.icon.class + '" style="display: inline-block; padding-right: .5em;' + op.display.icon.style + '"/>');
+      }
+      if (op.value) {
+        $option.addClass('option');
+      }
       $menu.append($option);
-      var $subMenuContainer = $('<div class="cm-wrapper cm-wrapper-' + depth + '" style="visibility: hidden;"><ol class="cm-menu"></ol></div>');
+
+      var $subMenuContainer = jQuery('<div class="cm-wrapper cm-wrapper-' + depth + '" style="visibility: hidden;"><ol class="cm-menu"></ol></div>');
       $menuContainer.append($subMenuContainer);
 
       $option.click(function (e) {
         if (op.value) {
           settings.cb(op.value);
         }
-    
+
         if (!op.suboptions) {
           _hide();
         }
