@@ -148,7 +148,7 @@ jQuery.fn.contextmenu = function (options) {
       if (op.display.icon) {
         $option.prepend('<i class="' + op.display.icon.class + '" style="display: inline-block; padding-right: .5em;' + op.display.icon.style + '"/>');
       }
-      if (op.value) {
+      if (op.value || op.suboptions) {
         $option.addClass('option');
       }
       $menu.append($option);
