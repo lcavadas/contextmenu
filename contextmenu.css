@@ -2,23 +2,34 @@
     position: absolute;
     z-index: 1000;
     border: 1px solid #ddd;
+    box-shadow: 0 0 2px 1px #ddd;
+    background-color: #efefef;
 }
 
 .cm-wrapper .cm-menu {
     list-style: none;
     padding: 0;
     margin: 0;
-    background-color: #fff;
+    background-color: #efefef;
     color: #333;
 }
 
 .cm-wrapper .cm-menu li {
-    padding: 3px;
+    padding: .25em .5em;
     cursor: pointer;
     text-align: left;
+    white-space: nowrap;
 }
 
+/*.cm-wrapper .cm-menu li.submenu::after {*/
+    /*content: '\25B6';*/
+    /*font-size: .75em;*/
+    /*float: right;*/
+    /*margin: .20em 0 0 .5em;*/
+/*}*/
+
+.cm-wrapper .cm-menu li.active,
 .cm-wrapper .cm-menu li:hover {
-    background-color: rgb(0, 51, 102);
-    color: #f2f2f2
+    background-color: #6cb3ff;
+    color: #efefef
 }

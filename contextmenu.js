@@ -18,7 +18,6 @@ jQuery.fn.contextmenu = function (options) {
   var settings = jQuery.extend({
     offsetX: 0,
     offsetY: 0,
-    width: 80,
     boundsEl: this,
     options: function () {
       return [
@@ -27,7 +26,7 @@ jQuery.fn.contextmenu = function (options) {
           value: 'op 1'
         },
         {
-          display: '<span>option 2</span>',
+          display: '<span>optioahsbdlajhsvdjhsvdln 2</span>',
           value: 'op 2',
           suboptions: [
             {
@@ -126,6 +125,7 @@ jQuery.fn.contextmenu = function (options) {
       var hpos = $menuContainer.css('margin-left');
       hpos = parseInt(hpos.substring(0, hpos.length - 2));
       $menuContainer.css('margin-left', (hpos - $menuContainer.outerWidth() - (optionWidth || 0)) + 'px');
+      $menuContainer.addClass('inverted');
       _invertedX = _invertedX ? Math.min(_invertedX, depth) : depth;
     }
 
@@ -137,7 +137,7 @@ jQuery.fn.contextmenu = function (options) {
     options.forEach(function (op) {
       var $option = jQuery('<li value="' + op.value + '">' + op.display + '</li>');
       $menu.append($option);
-      var $subMenuContainer = $('<div class="cm-wrapper cm-wrapper-' + depth + '" style="visibility: hidden;width:' + settings.width + 'px;"><ol class="cm-menu"></ol></div>');
+      var $subMenuContainer = $('<div class="cm-wrapper cm-wrapper-' + depth + '" style="visibility: hidden;"><ol class="cm-menu"></ol></div>');
       $menuContainer.append($subMenuContainer);
 
       $option.click(function (e) {
@@ -154,7 +154,9 @@ jQuery.fn.contextmenu = function (options) {
         _$menuContainer.find('.cm-wrapper-' + depth).not($subMenuContainer).find('.cm-wrapper').css('visibility', 'hidden');
         $subMenuContainer.css('margin-left', $menuContainer.outerWidth() - parseInt(_$menuContainer.css('border-right-width')));
         $subMenuContainer.css('margin-top', $option.position().top - $menuContainer.outerHeight() + parseInt(_$menuContainer.css('border-top-width')));
+        $menu.find('li').removeClass('active');
         if (op.suboptions) {
+          $option.addClass('active');
           _showMenu(
             $subMenuContainer,
             depth,
@@ -165,6 +167,7 @@ jQuery.fn.contextmenu = function (options) {
       });
 
       if (op.suboptions) {
+        $option.addClass('submenu');
         _generateOptions(op.suboptions, $subMenuContainer, depth + 1);
       }
     });
