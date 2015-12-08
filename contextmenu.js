@@ -102,18 +102,15 @@ jQuery.fn.contextmenu = function (options) {
 
     var parentOffset = _$this.offset();
     jQuery('.cm-wrapper').remove();
-    _$menuContainer = jQuery('<div class="cm-wrapper" style="visibility: hidden;width:' + settings.width + 'px;margin-left:' + (e.pageX - parentOffset.left + settings.offsetX) + 'px;margin-top:' + (e.pageY - parentOffset.top + settings.offsetY) + 'px"><ol class="cm-menu"></ol></div>');
+    _$menuContainer = jQuery('<div class="cm-wrapper" style="visibility: hidden;margin-left:' + (e.pageX - parentOffset.left + settings.offsetX) + 'px;margin-top:' + (e.pageY - parentOffset.top + settings.offsetY) + 'px"><ol class="cm-menu"></ol></div>');
     _$menuContainer.on("remove", function () {
       _invertedX = undefined;
       settings.hide.apply(this, arguments)
     });
     _$this.before(_$menuContainer);
 
-    window.setTimeout(function () {
-      _showMenu(_$menuContainer, 0);
-    }, 1);
-
     _generateOptions(options, _$menuContainer, 1);
+    _showMenu(_$menuContainer, 0);
 
     settings.show();
   };
@@ -165,6 +162,7 @@ jQuery.fn.contextmenu = function (options) {
         $subMenuContainer.css('margin-left', $menuContainer.outerWidth() - parseInt(_$menuContainer.css('border-right-width')));
         $subMenuContainer.css('margin-top', $option.position().top - $menuContainer.outerHeight() + parseInt(_$menuContainer.css('border-top-width')));
         $menu.find('li').removeClass('active');
+        $subMenuContainer.find('li').removeClass('active');
         if (op.suboptions) {
           $option.addClass('active');
           _showMenu(
