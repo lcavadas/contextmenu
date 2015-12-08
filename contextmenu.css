@@ -1,6 +1,7 @@
 .cm-wrapper {
     position: absolute;
     z-index: 1000;
+    border: 1px solid #ddd;
 }
 
 .cm-wrapper .cm-menu {
@@ -9,7 +10,6 @@
     margin: 0;
     background-color: #fff;
     color: #333;
-    border: 1px solid #ddd;
 }
 
 .cm-wrapper .cm-menu li {
