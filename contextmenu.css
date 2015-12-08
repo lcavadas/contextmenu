@@ -14,15 +14,15 @@
     color: #333;
 }
 
-.cm-wrapper .cm-menu li {
+.cm-wrapper .cm-menu li.option {
     padding: .25em .5em;
     cursor: pointer;
     text-align: left;
     white-space: nowrap;
 }
 
-.cm-wrapper .cm-menu li.active,
-.cm-wrapper .cm-menu li:hover {
+.cm-wrapper .cm-menu li.option.active,
+.cm-wrapper .cm-menu li.option:hover {
     background-color: #6cb3ff;
     color: #efefef
 }
